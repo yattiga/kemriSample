@@ -1,0 +1,5 @@
+PSEDA|How much time in the past one month has the child spent in sickness?|TYPE_TEXT
+PSEDB|Has the respondent been sick at least 2-3 days in the past one month?|TYPE_YES_NO
+PSEDC|Has the child in the past one month been taken care of by the respondent?|TYPE_YES_NO
+PSEDD|When was the child last vaccinated?|TYPE_DATE
+PSEDE|Is afraid of places?|TYPE_CHOICE
