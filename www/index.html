@@ -26,37 +26,34 @@
 <body ng-app="QuestionsFactoryDemo" ng-controller="QuestionCtrl">
 <ion-view view-title="Questions">
   <ion-content>
-    <table style="width:100%">
-      <tr ng-repeat="question in questions">
-        <td>{{question.name}}</td>
-        <td>{{question.question}}</td>
-        <td ng-show="question.type=='TYPE_TEXT'">
-          <input placeholder="Enter value" type="text"/>
-        </td>
-        <td ng-show="question.type=='TYPE_YES_NO'">
-          <label class="toggle toggle-balanced">
-            <input class="item-toggle" type="checkbox">
-            <div class="track">
-              <div class="handle"></div>
-            </div>
-          </label>
-        </td>
-        <td ng-show="question.type=='TYPE_DATE'">
-          <button class="button button-block button-positive" ng-click="openDatePicker()">
-            {{ pickedDate | date:'MMM/dd/yyyy' }}
-          </button>
-        </td>
-        <td ng-show="question.type=='TYPE_CHOICE'">
-          <input type="radio" id="rb1" name="rb" value="">
-          <label for="rb1">0</label>
-          <input type="radio" id="rb2" name="rb" value="">
-          <label for="rb2">1</label>
-          <input type="radio" id="rb3" name="rb" value="">
-          <label for="rb3">2</label>
-
-        </td>
-      </tr>
-    </table>
+    <div class="row" ng-repeat="question in questions">
+      <div class="col-10 qid">{{question.name}}</div>
+      <div class="col-60 qstr">{{question.question}}</div>
+      <div class="col qtype" ng-show="question.type=='TYPE_TEXT'">
+        <input placeholder="Enter value" type="text"/>
+      </div>
+      <div class="col qtype" ng-show="question.type=='TYPE_YES_NO'">
+        <label class="toggle toggle-balanced">
+          <input class="item-toggle" type="checkbox">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+      <div class="col qtype" ng-show="question.type=='TYPE_DATE'">
+        <button class="button button-block button-positive" ng-click="openDatePicker()">
+          {{ pickedDate | date:'MMM/dd/yyyy' }}
+        </button>
+      </div>
+      <div class="col qtype" ng-show="question.type=='TYPE_CHOICE'">
+        <input type="radio" id="rb1" name="rb" value="">
+        <label for="rb1">0</label>
+        <input type="radio" id="rb2" name="rb" value="">
+        <label for="rb2">1</label>
+        <input type="radio" id="rb3" name="rb" value="">
+        <label for="rb3">2</label>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
 </body>

@@ -1,15 +1,17 @@
-
-
-tr, td {
+.qid, .qstr, .qtype {
   border: thin solid black;
-  padding: 0.5%;
   vertical-align: middle;
+  padding: 0.5%;
+}
+
+.qid {
+  text-align: center;
 }
 
 input[type="text"] {
   border: 1px solid black;
   padding-left: 10px;
-  width: 90%;
+  width: 95%;
 }
 
 input[type=radio]{
