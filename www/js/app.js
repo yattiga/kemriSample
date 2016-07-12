@@ -32,7 +32,7 @@ angular.module('QuestionsFactoryDemo', ['ionic', 'ionic-datepicker','ngCordova']
         function Questionservice () {
             var self = this;
             self.questions = [];
-            self.SOCIO_EMOTIONAL = '/data/socio-emotional.txt';
+            self.SOCIO_EMOTIONAL = 'file:///android_asset/www/data/socio-emotional.txt';
 
             self.getQuestions =function () {
                 $http.get(self.SOCIO_EMOTIONAL).success(function (result) {
