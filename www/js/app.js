@@ -26,7 +26,7 @@
  }
  };*/
 
-angular.module('QuestionsFactoryDemo', ['ionic', 'ionic-datepicker'])
+angular.module('QuestionsFactoryDemo', ['ionic', 'ionic-datepicker','ngCordova'])
     .factory('Questionservice', function ($http) {
 
         function Questionservice () {
@@ -98,6 +98,38 @@ angular.module('QuestionsFactoryDemo', ['ionic', 'ionic-datepicker'])
             console.log ($scope.questions[0].ans);
         }
 
+    })
+
+
+    .controller('saveCtrl', function($scope, Questionservice, $cordovaFile) {
+
+      $scope.saveFile = function() {
+        var questionsArray=Questionservice.questions;
+        var idNumber = questionsArray[0].ans;
+        var testID = 'testSample';
+        var answerKey = '';
+        for (i=0; i < questionsArray.length; i++) {
+          answerKey += questionsArray[i].name+',';
+          answerKey += questionsArray[i].ans+'\n';
+        }
+
+        document.addEventListener('deviceready', function () {
+          $cordovaFile.createDir(cordova.file.externalRootDirectory, 'StudyID/'+idNumber, false)
+            .then(function(dir) {
+                console.log(dir, 'successfully created');
+                $cordovaFile.writeFile(cordova.file.externalRootDirectory+'/StudyID/'+idNumber,idNumber+testID+'.csv', answerKey+(new Date())+"\n",false)
+                  .then(function(success) {console.log(success,'written in new dir')}, function(eWriteFile) {console.log(eWriteFile,'error writing file in new dir')})},
+              function(eCreateDir) {console.log(eCreateDir, 'directory may already exist');
+                $cordovaFile.writeFile(cordova.file.externalRootDirectory+'/StudyID/'+idNumber, idNumber+testID+'.csv', answerKey+(new Date())+"\n", false)
+                  .then(function(file) {console.log(file, 'successfully written')},
+                    function(eWriteFile) {console.log(eWriteFile, 'error creating file');
+                      $cordovaFile.writeExistingFile(cordova.file.externalRootDirectory+'/StudyID/'+idNumber, idNumber+testID+'.csv', answerKey+(new Date())+"\n")
+                        .then(function(existingFile) {console.log(existingFile, 'updated')},
+                          function(eExistingFile){console.log(eExistingFile,'error writing to existing file')});
+                    });
+              });
+        });
+      };
     });
 
 /*.controller("QuestionCtrl", function ($scope, Questions, ionicDatePicker) {
