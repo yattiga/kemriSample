@@ -36,7 +36,7 @@ angular.module('QuestionsFactoryDemo', ['ionic', 'ionic-datepicker','ngCordova']
 
             self.getQuestions =function () {
                 $http.get(self.SOCIO_EMOTIONAL).success(function (result) {
-                    var questionStrs = result.split("\n");
+                    var questionStrs = result.split(/\r|\n/);
 
                     for (count = 0; count < questionStrs.length; count++) {
                         if (questionStrs[count]) {
